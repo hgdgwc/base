@@ -13,17 +13,17 @@ typedef int Status;
 typedef struct node
 {
     /* data */
+    struct node *prior;
     ElemType data;
     struct node *Next;
     
-}linknode;
-typedef struct node *linklist;
+}dblnode,*dbllist;
 
-linklist InitList(void) 
+dbllist InitList(void) 
 {
-    linklist L = NULL;
+    dbllist L = NULL;
 
-    if((L  = (linklist)malloc(sizeof(linklist))) == NULL)
+    if((L  = (dbllist)malloc(sizeof(dbllist))) == NULL)
     {
         printf("malloc failed\n");
         //printf("sizeof(seqlist) = %d\n",sizeof(seqlist));
@@ -31,19 +31,20 @@ linklist InitList(void)
     }
     else
     {
+        L->prior = L;
         L->data = 0;
-        L->Next = NULL;
+        L->Next = L;
 
 
     };
         return L;
 }
 
-Status ClearList(linklist L)
+Status ClearList(dbllist L)
 {
-    linklist s,p;
+    dbllist s,p;
     s = L;
-    if(s)
+    if(s->Next != L)
     {
         p = s;
         free(p);

@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-void pthread_1(void)
+void *pthread_1(void *arg)
 {
     printf("thread_1\n");
 }
 
-void pthread_2(void)
+void *pthread_2(void *arg)
 {
     printf("thread_2\n");
 }
